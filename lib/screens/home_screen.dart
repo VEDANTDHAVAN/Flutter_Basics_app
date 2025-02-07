@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_basics/base/rest/media.dart';
 import 'package:flutter_basics/base/rest/styles/app_styles.dart';
 import 'package:flutter_basics/base/widgets/double_text.dart';
+import 'package:flutter_basics/base/widgets/ticket_view.dart';
+import 'package:flutter_basics/base/utils/app_json.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -58,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                   child: const Row(
                       children: [
                         Icon(FluentSystemIcons.ic_fluent_search_regular),
-                        Text("Search Icon"),
+                        Text("Search"),
                       ]
                   ),
                 )
@@ -67,8 +69,13 @@ class HomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 40,),
           DoubleText('Upcoming Flights', 'View all'),
-          const SizedBox(height: 40,),
-          DoubleText('Upcoming Flights', 'View all'),
+          const SizedBox(height: 20,),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: ticketList.map((singleTicket) => TicketView(ticket: singleTicket,)).toList(),
+            ),
+          )
         ],
       ),
     );
