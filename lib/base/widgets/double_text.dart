@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_basics/base/rest/styles/app_styles.dart';
-import 'package:flutter_basics/screens/all_tickets.dart';
 
 class DoubleText extends StatelessWidget {
-  const DoubleText(this.bigText, this.smallText);
+  const DoubleText(this.bigText, this.smallText, this.func);
   final String bigText;
   final String smallText;
+  final VoidCallback func;
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +15,7 @@ class DoubleText extends StatelessWidget {
       children: [
         Text(bigText, style: AppStyles.headlineStyle1,),
         InkWell(
-          onTap: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => AllTickets(),
-              )
-            );
-          },
+          onTap: func,
           child: Text(smallText, style: AppStyles.headlineStyle2,),
         )
       ],

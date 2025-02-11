@@ -84,3 +84,42 @@ List<Map<String, dynamic>> ticketList = [
     'number':39
   },
 ];
+
+List<Map<String, dynamic>> hotelList = [
+  {
+    'image': 'hotel_room.png',
+    'place': 'Nest N Rest',
+    'destination': 'Mahabaleshwar',
+    'price': 2999
+  },
+  {
+    'image': 'hotel_room_view_1.png',
+    'place': 'The Hydel Park',
+    'destination': 'Chennai',
+    'price': 3185
+  },
+  {
+    'image': 'hotel_room_view_2.png',
+    'place': 'Royal Palace',
+    'destination': 'Bangalore',
+    'price': 4199
+  },
+  {
+    'image': 'hotel_room_view_3.png',
+    'place': 'Viera Elite',
+    'destination': 'Hyderabad',
+    'price': 3999
+  },
+  {
+    'image': 'pool_view.png',
+    'place': 'Grand Plaza',
+    'destination': 'Aurangabad',
+    'price': 3500
+  },
+  {
+    'image': 'city_view.png',
+    'place': 'Grand Banquet',
+    'destination': 'Surat',
+    'price': 2999
+  },
+];
