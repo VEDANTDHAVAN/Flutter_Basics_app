@@ -7,71 +7,116 @@ import 'package:flutter_basics/base/widgets/ticket_head_text.dart';
 import 'package:flutter_basics/base/widgets/ticket_text.dart';
 
 class TicketView extends StatelessWidget {
-
   final bool wholeScreen;
+  final bool? isColor;
   final Map<String, dynamic> ticket;
-  const TicketView({super.key, required this.ticket, this.wholeScreen=false});
+  const TicketView({super.key, required this.ticket, this.wholeScreen = false, this.isColor});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SizedBox(
-      width: size.width*0.85,
-      height: 188,
+      width: size.width * 0.85,
+      height: 184,
       child: Container(
-        margin: EdgeInsets.only(right: wholeScreen==true?0:16),
-
+        margin: EdgeInsets.only(right: wholeScreen == true ? 0 : 16),
         child: Column(
           children: [
             //upper part of ticket
             Container(
               padding: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                  color: isColor==null? AppStyles.ticketColor: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(22),
+                      topRight: Radius.circular(22)),
+                  boxShadow: [
+                  BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 5,
+                  spreadRadius: 2
+              )]
+              ),
               child: Column(
                 children: [
                   Row(
                     children: [
-                      TicketHeadText(text: ticket["from"]["code"],),
+                      TicketHeadText(
+                        text: ticket["from"]["code"],
+                        isColor: isColor,
+                      ),
                       Expanded(child: Container()),
-                      BigDots(),
-                      Expanded(child: Stack(children: [
-                        SizedBox(
-                          height: 25,
-                          child: AppLayoutBuilder(randomDivider: 6,),
-                        ),
-                        Center(child: Transform.rotate(angle: 1.5,
-                          child: Icon(Icons.local_airport_outlined, color: Colors.white,),
-                        ),)
-                      ],)),
-                      BigDots(),
+                      BigDots(isColor: isColor,),
+                      Expanded(
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                height: 25,
+                                child: AppLayoutBuilder(
+                                  randomDivider: 6,
+                                  isColor: isColor,
+                                ),
+                              ),
+                              Center(
+                                child: Transform.rotate(
+                                  angle: 1.5,
+                                  child: Icon(
+                                    Icons.local_airport_outlined,
+                                    color:isColor==null? Colors.white: Colors.lightBlueAccent,
+                                  ),
+                                ),
+                              )
+                            ],
+                          )),
+                      BigDots(isColor: isColor,),
                       Expanded(child: Container()),
-                      TicketHeadText(text: ticket["to"]["code"],),
+                      TicketHeadText(
+                        text: ticket["to"]["code"],
+                        isColor: isColor,
+                      ),
                     ],
                   ),
-                  SizedBox(height: 3,),
+                  SizedBox(
+                    height: 3,
+                  ),
                   Row(
                     children: [
-                      TicketText(text: ticket["from"]["name"],),
+                      TicketText(
+                        text: ticket["from"]["name"],
+                        isColor: isColor,
+                      ),
                       Expanded(child: Container()),
-                      TicketText(text: ticket["flying_time"]),
+                      TicketText(text: ticket["flying_time"], isColor: isColor,),
                       Expanded(child: Container()),
-                      TicketText(text: ticket["to"]["name"],),
+                      TicketText(
+                        text: ticket["to"]["name"],
+                        isColor: isColor,
+                      ),
                     ],
                   )
                 ],
               ),
-              decoration: BoxDecoration(
-                  color: AppStyles.ticketColor,
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(22), topRight: Radius.circular(22))
-              ),
             ),
             //central border
             Container(
-              height: 20, color: AppStyles.ticketColor2,
+              height: 20,
+              color: isColor==null? AppStyles.ticketColor2:Colors.white,
               child: Row(
                 children: [
-                  BigCircle(isRight: true,),
-                  Expanded(child: AppLayoutBuilder(randomDivider: 12, width: 6,)),
-                  BigCircle(isRight: false,),
+                  BigCircle(
+                    isRight: true,
+                    isColor: isColor,
+                  ),
+                  Expanded(
+                      child: AppLayoutBuilder(
+                    randomDivider: 12,
+                    width: 6,
+                    isColor: isColor,
+                  )),
+                  BigCircle(
+                    isRight: false,
+                    isColor: isColor,
+                  ),
                 ],
               ),
             ),
@@ -83,28 +128,57 @@ class TicketView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      TicketHeadText(text: ticket["date"],),
+                      TicketHeadText(
+                        text: ticket["date"],
+                        isColor: isColor,
+                      ),
                       Expanded(child: Container()),
-                      TicketHeadText(text: ticket["departure_time"]),
+                      TicketHeadText(
+                          text: ticket["departure_time"],
+                          isColor: isColor,
+                      ),
                       Expanded(child: Container()),
-                      TicketHeadText(text: ticket["number"].toString(),),
+                      TicketHeadText(
+                        text: ticket["number"].toString(),
+                        isColor: isColor,
+                      ),
                     ],
                   ),
-                  SizedBox(height: 3,),
+                  SizedBox(
+                    height: 3,
+                  ),
                   Row(
                     children: [
-                      const TicketText(text: "NYC"),
+                       TicketText(
+                          text: "NYC",
+                          isColor: isColor,
+                      ),
                       Expanded(child: Container()),
-                      const TicketText(text: "          Departure Time"),
+                      TicketText(
+                        text: "          Departure Time",
+                        isColor: isColor,
+                      ),
                       Expanded(child: Container()),
-                      const TicketText(text: "NUMBER"),
+                      TicketText(
+                        text: "NUMBER",
+                        isColor: isColor,
+                      ),
                     ],
                   )
                 ],
               ),
               decoration: BoxDecoration(
-                  color: Colors.deepOrange[300],
-                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(22), bottomRight: Radius.circular(22))
+                  color:isColor==null? Colors.deepOrange[300]: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(22),
+                      bottomRight: Radius.circular(22),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 5,
+                        spreadRadius: 0.5
+                    )]
               ),
             ),
           ],

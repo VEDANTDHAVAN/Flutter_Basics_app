@@ -1,7 +1,8 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_basics/screens/home_screen.dart';
-import 'package:flutter_basics/screens/search/search_screen.dart';
+import 'package:flutter_basics/screens/search_screen.dart';
+import 'package:flutter_basics/screens/ticket_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -11,21 +12,22 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
- //List iterated using index
+  //List iterated using index
   final appScreens = [
     const HomeScreen(),
     const SearchScreen(),
-    const Center(child: Text("Tickets")),
+    const TicketScreen(),
     const Center(child: Text("Profile")),
   ];
 //changing index for BottomNavbar
   int _selectedIndex = 0;
 
-  void _onItemTapped(int index){
+  void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,19 +39,27 @@ class _BottomNavBarState extends State<BottomNavBar> {
         unselectedItemColor: const Color(0xAB000480),
         showSelectedLabels: false,
         items: [
-          BottomNavigationBarItem(icon: Icon(FluentSystemIcons.ic_fluent_home_regular),
+          BottomNavigationBarItem(
+            icon: Icon(FluentSystemIcons.ic_fluent_home_regular),
             activeIcon: Icon(FluentSystemIcons.ic_fluent_home_filled),
-            label: 'Home',),
-          BottomNavigationBarItem(icon: Icon(FluentSystemIcons.ic_fluent_search_info_regular),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(FluentSystemIcons.ic_fluent_search_info_regular),
             activeIcon: Icon(FluentSystemIcons.ic_fluent_search_info_filled),
-            label: 'Search',),
-          BottomNavigationBarItem(icon: Icon(FluentSystemIcons.ic_fluent_ticket_regular),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(FluentSystemIcons.ic_fluent_ticket_regular),
             activeIcon: Icon(FluentSystemIcons.ic_fluent_ticket_filled),
-            label: 'Orders',),
-          BottomNavigationBarItem(icon: Icon(FluentSystemIcons.ic_fluent_person_regular),
+            label: 'Orders',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(FluentSystemIcons.ic_fluent_person_regular),
             activeIcon: Icon(FluentSystemIcons.ic_fluent_person_filled),
-            label: 'Profile',),
-       ],
+            label: 'Profile',
+          ),
+        ],
       ),
     );
   }

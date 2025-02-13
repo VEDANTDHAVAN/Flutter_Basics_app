@@ -13,10 +13,16 @@ class DoubleText extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(bigText, style: AppStyles.headlineStyle1,),
+        Text(
+          bigText,
+          style: AppStyles.headlineStyle1,
+        ),
         InkWell(
           onTap: func,
-          child: Text(smallText, style: AppStyles.headlineStyle2,),
+          child: Text(
+            smallText,
+            style: AppStyles.headlineStyle2,
+          ),
         )
       ],
     );
